@@ -37,37 +37,33 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                       flex: 2,
-                      child: GestureDetector(
-                        onTap: () {
-                          print("MALE Selected");
-                          _currentGenderSelection = Gender.MALE;
+                      child: SingleDetailCard(
+                        onPress: () {
                           setState(() {
-                            updateGenderSelection();
+                            _currentGenderSelection = Gender.MALE;
                           });
                         },
-                        child: SingleDetailCard(
-                          colour: maleCardColour,
-                          cardChild: IconDetail(
-                              displayIcon: FontAwesomeIcons.mars,
-                              descriptionText: "MALE"),
-                        ),
+                        colour: _currentGenderSelection == Gender.MALE
+                            ? ACTIVE_CARD_COLOUR
+                            : INACTIVE_CARD_COLOUR,
+                        cardChild: IconDetail(
+                            displayIcon: FontAwesomeIcons.mars,
+                            descriptionText: "MALE"),
                       )),
                   Expanded(
                       flex: 2,
-                      child: GestureDetector(
-                        onTap: () {
-                          print("FEMALE Selected");
-                          _currentGenderSelection = Gender.FEMALE;
+                      child: SingleDetailCard(
+                        onPress: () {
                           setState(() {
-                            updateGenderSelection();
+                            _currentGenderSelection = Gender.FEMALE;
                           });
                         },
-                        child: SingleDetailCard(
-                          colour: femaleCardColour,
-                          cardChild: IconDetail(
-                              displayIcon: FontAwesomeIcons.venus,
-                              descriptionText: "FEMALE"),
-                        ),
+                        colour: _currentGenderSelection == Gender.FEMALE
+                            ? ACTIVE_CARD_COLOUR
+                            : INACTIVE_CARD_COLOUR,
+                        cardChild: IconDetail(
+                            displayIcon: FontAwesomeIcons.venus,
+                            descriptionText: "FEMALE"),
                       ))
                 ],
               )),
