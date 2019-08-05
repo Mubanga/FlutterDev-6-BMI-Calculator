@@ -20,7 +20,8 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(flex: 3, child: MultipleDetailCards(2)),
-          Expanded(flex: 3, child: SingleDetailCard(COLOUR_DETAIL_CARD)),
+          Expanded(
+              flex: 3, child: SingleDetailCard(colour: COLOUR_DETAIL_CARD)),
           Expanded(flex: 3, child: MultipleDetailCards(2)),
           Container(
             color: COLOUR_BOTTOM_CONTAINER,
@@ -33,26 +34,35 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  Container SingleDetailCard(Color colour) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: colour, borderRadius: BorderRadius.circular(10.00)),
-    );
-  }
-
-
   Container MultipleDetailCards(int CardNumber) {
     List<Expanded> _NumberOfCards = [];
     for (int x = 0; x < CardNumber; x++) {
       Expanded card = Expanded(
-          flex: CardNumber, child: SingleDetailCard(COLOUR_DETAIL_CARD));
+          flex: CardNumber,
+          child: SingleDetailCard(colour: COLOUR_DETAIL_CARD));
       _NumberOfCards.add(card);
     }
     return Container(
       child: Row(
         children: _NumberOfCards,
       ),
+    );
+  }
+}
+
+class SingleDetailCard extends StatelessWidget {
+  final Color colour;
+  final Widget cardChild;
+
+  SingleDetailCard({@required this.colour, this.cardChild});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: cardChild,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: colour, borderRadius: BorderRadius.circular(10.00)),
     );
   }
 }
