@@ -42,6 +42,7 @@ class _InputPageState extends State<InputPage> {
                           setState(() {
                             _currentGenderSelection = Gender.MALE;
                           });
+
                         },
                         colour: _currentGenderSelection == Gender.MALE
                             ? ACTIVE_CARD_COLOUR
