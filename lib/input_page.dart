@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'single_detail_card.dart';
+import 'icon_detail.dart';
 
 const BOTTOM_CONTAINER_HEIGHT = 80.0;
-const COLOUR_BOTTOM_CONTAINER = Color(0xFFEB1555);
-const COLOUR_DETAIL_CARD = Color(0xFF1D1E33);
-const COLOUR_TEXT_DETAIL_CARD = Color(0xFF8D8E98);
+const ACTIVE_CARD_COLOUR = Color(0xFF1D1E33);
+const INACTIVE_CARD_COLOUR = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -12,6 +13,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColour = INACTIVE_CARD_COLOUR;
+  Color femaleCardColour = INACTIVE_CARD_COLOUR;
+  int _currentGenderSelection = -1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +35,8 @@ class _InputPageState extends State<InputPage> {
                       child: SingleDetailCard(
                         colour: COLOUR_DETAIL_CARD,
                         cardChild: IconDetail(
-                          displayIcon: FontAwesomeIcons.mars,
-                          descriptionText: "MALE",
-                        ),
+                            displayIcon: FontAwesomeIcons.mars,
+                            descriptionText: "MALE"),
                       )),
                   Expanded(
                       flex: 2,
@@ -83,48 +87,6 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
-}
 
-class IconDetail extends StatelessWidget {
-  final String descriptionText;
-  final IconData displayIcon;
-
-  IconDetail({@required this.displayIcon, @required this.descriptionText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          displayIcon,
-          size: 80.0,
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        Text(
-          descriptionText,
-          style: TextStyle(color: COLOUR_TEXT_DETAIL_CARD, fontSize: 18.00),
-        )
-      ],
-    );
-  }
-}
-
-class SingleDetailCard extends StatelessWidget {
-  final Color colour;
-  final Widget cardChild;
-
-  SingleDetailCard({@required this.colour, this.cardChild});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: colour, borderRadius: BorderRadius.circular(10.00)),
-    );
-  }
+  void updateGenderSelection() {}
 }
