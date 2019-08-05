@@ -32,19 +32,37 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(
-                        colour: COLOUR_DETAIL_CARD,
-                        cardChild: IconDetail(
-                            displayIcon: FontAwesomeIcons.mars,
-                            descriptionText: "MALE"),
+                      child: GestureDetector(
+                        onTap: () {
+                          print("MALE Selected");
+                          _currentGenderSelection = 0;
+                          setState(() {
+                            updateGenderSelection();
+                          });
+                        },
+                        child: SingleDetailCard(
+                          colour: maleCardColour,
+                          cardChild: IconDetail(
+                              displayIcon: FontAwesomeIcons.mars,
+                              descriptionText: "MALE"),
+                        ),
                       )),
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(
-                        colour: COLOUR_DETAIL_CARD,
-                        cardChild: IconDetail(
-                            displayIcon: FontAwesomeIcons.venus,
-                            descriptionText: "FEMALE"),
+                      child: GestureDetector(
+                        onTap: () {
+                          print("FEMALE Selected");
+                          _currentGenderSelection = 1;
+                          setState(() {
+                            updateGenderSelection();
+                          });
+                        },
+                        child: SingleDetailCard(
+                          colour: femaleCardColour,
+                          cardChild: IconDetail(
+                              displayIcon: FontAwesomeIcons.venus,
+                              descriptionText: "FEMALE"),
+                        ),
                       ))
                 ],
               )),
@@ -88,5 +106,13 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  void updateGenderSelection() {}
+  void updateGenderSelection() {
+    if (_currentGenderSelection == 0) {
+      maleCardColour = ACTIVE_CARD_COLOUR;
+      femaleCardColour = INACTIVE_CARD_COLOUR;
+    } else if (_currentGenderSelection == 1) {
+      maleCardColour = INACTIVE_CARD_COLOUR;
+      femaleCardColour = ACTIVE_CARD_COLOUR;
+    }
+  }
 }
