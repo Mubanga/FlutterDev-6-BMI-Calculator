@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'single_detail_card.dart';
 import 'icon_detail.dart';
-
-const BOTTOM_CONTAINER_HEIGHT = 80.0;
-const ACTIVE_CARD_COLOUR = Color(0xFF1D1E33);
-const INACTIVE_CARD_COLOUR = Color(0xFF111328);
+import 'constants.dart';
 
 enum Gender {
   MALE,
@@ -18,9 +15,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = INACTIVE_CARD_COLOUR;
-  Color femaleCardColour = INACTIVE_CARD_COLOUR;
+  Color maleCardColour = kInactiveCardColour;
+  Color femaleCardColour = kInactiveCardColour;
   Gender _currentGenderSelection;
+  int _height = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +28,18 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          /**
+           * Gender Widgets
+           */
           Expanded(
               flex: 3,
               child: Row(
                 children: <Widget>[
+                  /**
+                   * MALE Gender Detail Card
+                   */
                   Expanded(
                       flex: 2,
                       child: SingleDetailCard(
@@ -42,15 +47,17 @@ class _InputPageState extends State<InputPage> {
                           setState(() {
                             _currentGenderSelection = Gender.MALE;
                           });
-
                         },
                         colour: _currentGenderSelection == Gender.MALE
-                            ? ACTIVE_CARD_COLOUR
-                            : INACTIVE_CARD_COLOUR,
+                            ? kActiveCardColour
+                            : kInactiveCardColour,
                         cardChild: IconDetail(
                             displayIcon: FontAwesomeIcons.mars,
                             descriptionText: "MALE"),
                       )),
+                  /**
+                   * FEMALE Gender Detail Card
+                   */
                   Expanded(
                       flex: 2,
                       child: SingleDetailCard(
@@ -60,33 +67,77 @@ class _InputPageState extends State<InputPage> {
                           });
                         },
                         colour: _currentGenderSelection == Gender.FEMALE
-                            ? ACTIVE_CARD_COLOUR
-                            : INACTIVE_CARD_COLOUR,
+                            ? kActiveCardColour
+                            : kInactiveCardColour,
                         cardChild: IconDetail(
                             displayIcon: FontAwesomeIcons.venus,
                             descriptionText: "FEMALE"),
                       ))
                 ],
               )),
+          /**
+           *  Height Widget
+           */
           Expanded(
-              flex: 3, child: SingleDetailCard(colour: COLOUR_DETAIL_CARD)),
+              flex: 3,
+              child: SingleDetailCard(
+                colour: kColourDetailCard,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "HEIGHT",
+                      style: kTextStyleLabel,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          _height.toString(),
+                          style: kTextStyleNumbers,
+                        ),
+                        Text(
+                          "cm",
+                          style: kTextStyleLabel,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                        value: _height.toDouble(),
+                        min: 120,
+                        max: 240,
+                        activeColor: kSliderActiveColour,
+                        inactiveColor: kSliderInActiveColour,
+                        onChanged: (double sliderHeight) {
+                          setState(() {
+                            _height = sliderHeight.round();
+                          });
+                        })
+                  ],
+                ),
+              )),
+          /**
+           *  Age and Weight Widgets
+           */
           Expanded(
               flex: 3,
               child: Row(
                 children: <Widget>[
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(colour: COLOUR_DETAIL_CARD)),
+                      child: SingleDetailCard(colour: kColourDetailCard)),
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(colour: COLOUR_DETAIL_CARD))
+                      child: SingleDetailCard(colour: kColourDetailCard))
                 ],
               )),
           Container(
-            color: COLOUR_BOTTOM_CONTAINER,
+            color: kColourBottomContainer,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: BOTTOM_CONTAINER_HEIGHT,
+            height: kBottomContainerHeight,
           )
         ],
       ),
@@ -97,8 +148,7 @@ class _InputPageState extends State<InputPage> {
     List<Expanded> _NumberOfCards = [];
     for (int x = 0; x < CardNumber; x++) {
       Expanded card = Expanded(
-          flex: CardNumber,
-          child: SingleDetailCard(colour: COLOUR_DETAIL_CARD));
+          flex: CardNumber, child: SingleDetailCard(colour: kColourDetailCard));
       _NumberOfCards.add(card);
     }
     return Container(
@@ -110,11 +160,11 @@ class _InputPageState extends State<InputPage> {
 
   void updateGenderSelection() {
     if (_currentGenderSelection == Gender.MALE) {
-      maleCardColour = ACTIVE_CARD_COLOUR;
-      femaleCardColour = INACTIVE_CARD_COLOUR;
+      maleCardColour = kActiveCardColour;
+      femaleCardColour = kInactiveCardColour;
     } else if (_currentGenderSelection == Gender.FEMALE) {
-      maleCardColour = INACTIVE_CARD_COLOUR;
-      femaleCardColour = ACTIVE_CARD_COLOUR;
+      maleCardColour = kInactiveCardColour;
+      femaleCardColour = kActiveCardColour;
     }
   }
 }
