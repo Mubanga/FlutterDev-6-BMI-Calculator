@@ -15,9 +15,9 @@ class _InputPageState extends State<InputPage> {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(flex: 3, child: TwoDetailCard()),
+          Expanded(flex: 3, child: MultipleDetailCards(2)),
           Expanded(flex: 3, child: SingleDetailCard()),
-          Expanded(flex: 3, child: TwoDetailCard())
+          Expanded(flex: 3, child: MultipleDetailCards(2))
         ],
       ),
     );
@@ -44,6 +44,19 @@ class _InputPageState extends State<InputPage> {
             child: SingleDetailCard(),
           )
         ],
+      ),
+    );
+  }
+
+  Container MultipleDetailCards(int CardNumber) {
+    List<Expanded> _NumberOfCards = [];
+    for (int x = 0; x < CardNumber; x++) {
+      Expanded card = Expanded(flex: CardNumber, child: SingleDetailCard());
+      _NumberOfCards.add(card);
+    }
+    return Container(
+      child: Row(
+        children: _NumberOfCards,
       ),
     );
   }
