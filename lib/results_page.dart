@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
   @override
@@ -27,6 +28,7 @@ class ResultsPage extends StatelessWidget {
           Expanded(
               flex: 5,
               child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 10.0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     color: kActiveCardColour),
@@ -38,7 +40,7 @@ class ResultsPage extends StatelessWidget {
                     Text(
                       "Current BMI Result",
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 20.0,
                         color: Colors.green,
                       ),
                     ),
@@ -47,26 +49,26 @@ class ResultsPage extends StatelessWidget {
                       style: kTextStyleNumbers,
                     ),
                     Text(
-                      "Lorem Ipsum Carpe Diem A Whole Bunch Of Latin Words Go Here",
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac quam quam. Etiam rhoncus tortor in pharetra laoreet.",
+                      textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
                 ),
               )),
+          SizedBox(
+            height: 15.0,
+          ),
           /**
            * RE-CALCULATE Button
            */
           Expanded(
-              child: Container(
-            color: kColourBottomContainer,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                "RE-CALCULATE",
-                style: kTextStyleLargeButton,
-              ),
-            ),
-          ))
+            child: BottomButton(
+                buttonText: "RE-CALCULATE",
+                onClick: () {
+                  Navigator.pop(context);
+                }),
+          )
         ],
       ),
     );

@@ -4,6 +4,8 @@ import 'single_detail_card.dart';
 import 'icon_detail.dart';
 import 'constants.dart';
 import 'results_page.dart';
+import 'bottom_button.dart';
+import 'rounded_button.dart';
 
 enum Gender {
   MALE,
@@ -223,44 +225,18 @@ class _InputPageState extends State<InputPage> {
                       ))
                 ],
               )),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ResultsPage();
-              }));
+          /**
+           * Bottom Button
+           */
+          BottomButton(
+            buttonText: "CALCULATE",
+            onClick: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()));
             },
-            child: Container(
-              color: kColourBottomContainer,
-              margin: EdgeInsets.only(top: 10.0),
-              padding: EdgeInsets.only(bottom: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: Center(
-                  child: Text("CALCULATE", style: kTextStyleLargeButton)),
-            ),
           )
         ],
       ),
     );
-  }
-}
-
-class RoundedButton extends StatelessWidget {
-  final IconData icon;
-  final Color colour;
-  final Function onClick;
-
-  RoundedButton(
-      {@required this.icon, @required this.colour, @required this.onClick});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-        elevation: 0.0,
-        constraints: BoxConstraints.tightFor(height: 56.0, width: 56.0),
-        fillColor: kColourRoundedButton,
-        shape: CircleBorder(),
-        child: Icon(icon),
-        onPressed: onClick);
   }
 }
