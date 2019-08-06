@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 /**
+ * BMI Specific Constants
+ */
+
+const kMIN_HEIGHT = 120.0;
+const kMAX_HEIGHT = 240.0;
+
+/**
  *  Colours
  */
 const kBottomContainerHeight = 80.0;
@@ -11,6 +18,7 @@ const kColourDetailCard = Color(0xFF1D1E33);
 const kColourTextDetailCard = Color(0xFF8D8E98);
 const kSliderInActiveColour = kColourTextDetailCard;
 const kSliderActiveColour = kColourBottomContainer;
+const kSliderOverlayColour = Color(0x29EB1555);
 
 /**
  *  Text Style's
