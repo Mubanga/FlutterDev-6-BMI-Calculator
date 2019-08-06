@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'single_detail_card.dart';
-import 'icon_detail.dart';
-import 'constants.dart';
-import 'results_page.dart';
-import 'bottom_button.dart';
-import 'rounded_button.dart';
+import 'package:bmi_calculator/components//single_detail_card.dart';
+import 'package:bmi_calculator/components/icon_detail.dart';
+import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/components/rounded_button.dart';
 
 enum Gender {
   MALE,
@@ -231,8 +231,12 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonText: "CALCULATE",
             onClick: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultsPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(),
+                ),
+              );
             },
           )
         ],
