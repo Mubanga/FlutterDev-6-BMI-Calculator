@@ -20,6 +20,7 @@ class _InputPageState extends State<InputPage> {
   Gender _currentGenderSelection;
   int _height = 160;
   int _weight = 60;
+  int _age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +136,9 @@ class _InputPageState extends State<InputPage> {
               flex: 3,
               child: Row(
                 children: <Widget>[
+                  /**
+                   * WEIGHT
+                   */
                   Expanded(
                       flex: 2,
                       child: SingleDetailCard(
@@ -179,9 +183,43 @@ class _InputPageState extends State<InputPage> {
                           ],
                         ),
                       )),
+                  /**
+                   * AGE
+                   */
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(colour: kColourDetailCard))
+                      child: SingleDetailCard(
+                        colour: kColourDetailCard,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("AGE", style: kTextStyleLabel),
+                            Text(_age.toString(), style: kTextStyleNumbers),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                RoundedButton(
+                                    icon: Icons.add,
+                                    colour: kColourRoundedButton,
+                                    onClick: () {
+                                      setState(() {
+                                        _age++;
+                                      });
+                                    }),
+                                SizedBox(width: 20.0),
+                                RoundedButton(
+                                    icon: Icons.remove,
+                                    colour: kColourRoundedButton,
+                                    onClick: () {
+                                      setState(() {
+                                        _age--;
+                                      });
+                                    })
+                              ],
+                            )
+                          ],
+                        ),
+                      ))
                 ],
               )),
           Container(
@@ -189,6 +227,12 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: kBottomContainerHeight,
+            child: Center(
+                child: Text("Calculate Your BMI",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold))),
           )
         ],
       ),
