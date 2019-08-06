@@ -30,3 +30,7 @@ const kTextStyleLabel =
     TextStyle(color: kColourTextDetailCard, fontSize: 18.00);
 const kTextStyleNumbers =
     TextStyle(fontSize: 50.00, fontWeight: FontWeight.w900);
+const kTextStyleLargeButton =
+    TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold);
+const kTextStyleTitle =
+    TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.bold);
