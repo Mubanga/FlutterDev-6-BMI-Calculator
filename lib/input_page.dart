@@ -19,6 +19,7 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColour = kInactiveCardColour;
   Gender _currentGenderSelection;
   int _height = 160;
+  int _weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +137,48 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                       flex: 2,
-                      child: SingleDetailCard(colour: kColourDetailCard)),
+                      child: SingleDetailCard(
+                        colour: kColourDetailCard,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "WEIGHT",
+                              style: kTextStyleLabel,
+                            ),
+                            Text(
+                              _weight.toString(),
+                              style: kTextStyleNumbers,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                RoundedButton(
+                                  icon: Icons.add,
+                                  colour: Colors.white,
+                                  onClick: () {
+                                    setState(() {
+                                      _weight++;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                RoundedButton(
+                                  icon: Icons.remove,
+                                  colour: Colors.white,
+                                  onClick: () {
+                                    setState(() {
+                                      _weight--;
+                                    });
+                                  },
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )),
                   Expanded(
                       flex: 2,
                       child: SingleDetailCard(colour: kColourDetailCard))
@@ -152,28 +194,24 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
+}
 
-  Container MultipleDetailCards(int CardNumber) {
-    List<Expanded> _NumberOfCards = [];
-    for (int x = 0; x < CardNumber; x++) {
-      Expanded card = Expanded(
-          flex: CardNumber, child: SingleDetailCard(colour: kColourDetailCard));
-      _NumberOfCards.add(card);
-    }
-    return Container(
-      child: Row(
-        children: _NumberOfCards,
-      ),
-    );
-  }
+class RoundedButton extends StatelessWidget {
+  final IconData icon;
+  final Color colour;
+  final Function onClick;
 
-  void updateGenderSelection() {
-    if (_currentGenderSelection == Gender.MALE) {
-      maleCardColour = kActiveCardColour;
-      femaleCardColour = kInactiveCardColour;
-    } else if (_currentGenderSelection == Gender.FEMALE) {
-      maleCardColour = kInactiveCardColour;
-      femaleCardColour = kActiveCardColour;
-    }
+  RoundedButton(
+      {@required this.icon, @required this.colour, @required this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+        elevation: 0.0,
+        constraints: BoxConstraints.tightFor(height: 56.0, width: 56.0),
+        fillColor: kColourRoundedButton,
+        shape: CircleBorder(),
+        child: Icon(icon),
+        onPressed: onClick);
   }
 }

@@ -11,11 +11,14 @@ const kMAX_HEIGHT = 240.0;
  *  Colours
  */
 const kBottomContainerHeight = 80.0;
+
 const kActiveCardColour = Color(0xFF1D1E33);
 const kInactiveCardColour = Color(0xFF111328);
 const kColourBottomContainer = Color(0xFFEB1555);
 const kColourDetailCard = Color(0xFF1D1E33);
 const kColourTextDetailCard = Color(0xFF8D8E98);
+const kColourRoundedButton = Color(0xFF4C4F5E);
+
 const kSliderInActiveColour = kColourTextDetailCard;
 const kSliderActiveColour = kColourBottomContainer;
 const kSliderOverlayColour = Color(0x29EB1555);
