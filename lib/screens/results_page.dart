@@ -3,6 +3,15 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
+  final String BMI;
+  final String BMIResult;
+  final String BMIInterpretation;
+
+  ResultsPage(
+      {@required this.BMI,
+      @required this.BMIResult,
+      @required this.BMIInterpretation});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,18 +47,18 @@ class ResultsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Current BMI Result",
+                      BMIResult.toUpperCase(),
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.green,
                       ),
                     ),
                     Text(
-                      "[NUMBER HERE]",
+                      BMIResult,
                       style: kTextStyleNumbers,
                     ),
                     Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac quam quam. Etiam rhoncus tortor in pharetra laoreet.",
+                      BMIInterpretation,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
